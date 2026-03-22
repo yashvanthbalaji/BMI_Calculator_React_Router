@@ -1,5 +1,7 @@
 # Ex06 BMI Calculator
-## Date: 
+## Date: 19.03.2026
+## Name: Balaji A
+## RegNo: 212223040023
 
 ## AIM
 To develop a responsive and interactive Body Mass Index (BMI) Calculator using React that allows users to input their height and weight, and calculates their BMI to categorize their health status (e.g., Underweight, Normal, Overweight, Obese).
@@ -64,10 +66,137 @@ Create routing structure with react-router-dom:
 <li>Add styling using CSS or Tailwind.</li>
 
 ## PROGRAM
+main.jsx
+```
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App.jsx';
+import './index.css'; // Optional: for global styles
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+```
+App.jsx
+```
+import React from 'react';
+import BMICalculator from './bmi.jsx';
+
+function App() {
+  return (
+    <div className="App" style={{ 
+      display: 'flex', 
+      justifyContent: 'center', 
+      alignItems: 'center', 
+      height: '100vh',
+      backgroundColor: '#f4f4f9'
+    }}>
+      <BMICalculator />
+    </div>
+  );
+}
+
+export default App;
+```
+Bmi.jsx
+```
+import React, { useState } from 'react';
+
+const BMICalculator = () => {
+  const [weight, setWeight] = useState('');
+  const [height, setHeight] = useState('');
+  const [bmi, setBmi] = useState(null);
+  const [message, setMessage] = useState('');
+
+  const calculateBMI = (e) => {
+    e.preventDefault();
+
+    if (weight > 0 && height > 0) {
+      // Height is usually entered in cm, so we convert to meters
+      const heightInMeters = height / 100;
+      const bmiValue = (weight / (heightInMeters * heightInMeters)).toFixed(1);
+      setBmi(bmiValue);
+
+      if (bmiValue < 18.5) {
+        setMessage('Underweight');
+      } else if (bmiValue >= 18.5 && bmiValue < 24.9) {
+        setMessage('Healthy Weight');
+      } else if (bmiValue >= 25 && bmiValue < 29.9) {
+        setMessage('Overweight');
+      } else {
+        setMessage('Obese');
+      }
+    } else {
+      alert('Please enter valid values');
+    }
+  };
+
+  return (
+    <div style={{
+      padding: '20px',
+      borderRadius: '8px',
+      boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+      backgroundColor: '#fff',
+      width: '300px'
+    }}>
+      <h2 style={{ textAlign: 'center' }}>BMI Calculator</h2>
+      <form onSubmit={calculateBMI}>
+        <div style={{ marginBottom: '10px' }}>
+          <label>Weight (kg): </label>
+          <input 
+            type="number" 
+            value={weight} 
+            onChange={(e) => setWeight(e.target.value)} 
+            style={{ width: '100%', padding: '8px', marginTop: '5px' }}
+          />
+        </div>
+        <div style={{ marginBottom: '20px' }}>
+          <label>Height (cm): </label>
+          <input 
+            type="number" 
+            value={height} 
+            onChange={(e) => setHeight(e.target.value)} 
+            style={{ width: '100%', padding: '8px', marginTop: '5px' }}
+          />
+        </div>
+        <button type="submit" style={{
+          width: '100%',
+          padding: '10px',
+          backgroundColor: '#007bff',
+          color: 'white',
+          border: 'none',
+          borderRadius: '4px',
+          cursor: 'pointer'
+        }}>
+          Calculate
+        </button>
+      </form>
+
+      {bmi && (
+        <div style={{ marginTop: '20px', textAlign: 'center' }}>
+          <h3>Your BMI: {bmi}</h3>
+          <p><strong>Result:</strong> {message}</p>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default BMICalculator;
+
+```
 
 
 
 ## OUTPUT
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/98d81cb1-2fbd-4415-bd20-5b75aa6e24cd" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/b2119b85-b36e-431c-9fdb-efe91375de2f" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/98880222-5453-4e65-a038-d66370f91425" />
+
+
+
 
 
 
