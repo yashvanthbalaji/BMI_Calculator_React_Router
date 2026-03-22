@@ -1,0 +1,43 @@
+/* ===========================
+   GLOBAL RESET & BASE STYLES
+   =========================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --primary: #6c63ff;
+  --primary-dark: #5a52d5;
+  --primary-light: #ede9ff;
+  --accent: #ff6584;
+  --text-dark: #1a1a2e;
+  --text-mid: #4a4a6a;
+  --text-light: #8888aa;
+  --bg-gradient: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  --card-bg: rgba(255, 255, 255, 0.07);
+  --card-border: rgba(255, 255, 255, 0.12);
+  --glass-blur: blur(16px);
+  --radius: 20px;
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  --underweight: #60a5fa;
+  --normal: #34d399;
+  --overweight: #fbbf24;
+  --obese: #f87171;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+  min-height: 100vh;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+}

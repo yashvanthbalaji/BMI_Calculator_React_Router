@@ -1,0 +1,273 @@
+/* ======= RESULT PAGE STYLES ======= */
+.result-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.22;
+  pointer-events: none;
+  z-index: 0;
+}
+.orb-1 {
+  width: 380px; height: 380px;
+  background: #6c63ff;
+  top: -90px; left: -90px;
+  animation: drift 12s ease-in-out infinite alternate;
+}
+.orb-2 {
+  width: 280px; height: 280px;
+  background: #34d399;
+  bottom: -70px; right: -70px;
+  animation: drift 10s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes drift {
+  from { transform: translate(0, 0); }
+  to   { transform: translate(30px, 30px); }
+}
+
+/* Result Card */
+.result-card {
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 2px solid skyblue;
+  border-radius: 28px;
+  padding: 2.5rem 2.5rem 2rem;
+  width: 100%;
+  max-width: 480px;
+  box-shadow:
+    0 0 10px skyblue,
+    0 0 20px skyblue,
+    0 0 40px rgba(135, 206, 235, 0.6),
+    0 8px 40px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  animation: fadeUp 0.6s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Header */
+.result-header { margin-bottom: 1.5rem; }
+
+.result-icon {
+  font-size: 2.8rem;
+  margin-bottom: 0.5rem;
+  animation: pop 0.5s 0.3s ease both;
+}
+
+@keyframes pop {
+  from { transform: scale(0.5); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+.result-header h1 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #ff6ef7, #a78bfa, #43e6fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.01em;
+}
+
+/* BMI Score Ring */
+.bmi-ring {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  margin: 0 auto 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid;
+  position: relative;
+  animation: ringPop 0.6s 0.2s ease both;
+}
+
+@keyframes ringPop {
+  from { transform: scale(0.6); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
+.bmi-ring.underweight { border-color: #60a5fa; box-shadow: 0 0 30px rgba(96,165,250,0.4); }
+.bmi-ring.normal       { border-color: #34d399; box-shadow: 0 0 30px rgba(52,211,153,0.4); }
+.bmi-ring.overweight   { border-color: #fbbf24; box-shadow: 0 0 30px rgba(251,191,36,0.4); }
+.bmi-ring.obese        { border-color: #f87171; box-shadow: 0 0 30px rgba(248,113,113,0.4); }
+
+.bmi-number {
+  font-size: 2.4rem;
+  font-weight: 800;
+  line-height: 1;
+  color: #fff;
+}
+
+.bmi-label-small {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.55);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  margin-top: 0.1rem;
+}
+
+/* Category Badge */
+.category-badge {
+  display: inline-block;
+  padding: 0.45rem 1.4rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.03em;
+  animation: fadeUp 0.5s 0.4s ease both;
+}
+
+.category-badge.underweight { background: rgba(96,165,250,0.18);  color: #93c5fd; border: 1px solid rgba(96,165,250,0.4); }
+.category-badge.normal       { background: rgba(52,211,153,0.18);  color: #6ee7b7; border: 1px solid rgba(52,211,153,0.4); }
+.category-badge.overweight   { background: rgba(251,191,36,0.15);  color: #fde68a; border: 1px solid rgba(251,191,36,0.4); }
+.category-badge.obese        { background: rgba(248,113,113,0.18); color: #fca5a5; border: 1px solid rgba(248,113,113,0.4); }
+
+/* BMI Scale Bar */
+.bmi-scale {
+  margin-bottom: 1.5rem;
+}
+
+.scale-track {
+  height: 8px;
+  border-radius: 10px;
+  background: linear-gradient(to right, #60a5fa 0%, #34d399 40%, #fbbf24 70%, #f87171 100%);
+  position: relative;
+  margin-bottom: 0.6rem;
+}
+
+.scale-fill { display: none; } /* visual handled by gradient */
+
+.scale-marker {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 16px;
+  height: 16px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.3), 0 2px 8px rgba(0,0,0,0.4);
+  transition: left 0.6s ease;
+}
+
+.scale-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.45);
+  padding: 0 2px;
+}
+
+/* Stats */
+.stats-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+}
+
+.stat-box {
+  flex: 1;
+  padding: 1rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.stat-value {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.45);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.stat-divider {
+  width: 1px;
+  height: 50px;
+  background: rgba(255,255,255,0.12);
+}
+
+/* Advice Box */
+.advice-box {
+  border-radius: 14px;
+  padding: 0.9rem 1.1rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.advice-box.underweight { background: rgba(96,165,250,0.1);  color: #bfdbfe; border: 1px solid rgba(96,165,250,0.2); }
+.advice-box.normal       { background: rgba(52,211,153,0.1);  color: #a7f3d0; border: 1px solid rgba(52,211,153,0.2); }
+.advice-box.overweight   { background: rgba(251,191,36,0.1);  color: #fef08a; border: 1px solid rgba(251,191,36,0.2); }
+.advice-box.obese        { background: rgba(248,113,113,0.1); color: #fecaca; border: 1px solid rgba(248,113,113,0.2); }
+
+/* Recalculate Button */
+.recalc-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #f72585, #7209b7, #4361ee, #4cc9f0);
+  background-size: 200% 200%;
+  animation: gradientShift 4s ease infinite;
+  border: none;
+  border-radius: 14px;
+  color: #fff;
+  font-size: 1.08rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  padding: 0.9rem;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  font-family: 'Inter', sans-serif;
+  box-shadow: 0 4px 20px rgba(247,37,133,0.4), 0 0 30px rgba(67,97,238,0.25);
+}
+
+.recalc-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(247,37,133,0.55), 0 0 50px rgba(76,201,240,0.35);
+}
+
+.recalc-btn:active { transform: scale(0.97); }
+
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ======= RESPONSIVE ======= */
+@media (max-width: 500px) {
+  .result-card { padding: 2rem 1.4rem 1.5rem; }
+  .bmi-ring { width: 120px; height: 120px; }
+  .bmi-number { font-size: 2rem; }
+  .result-header h1 { font-size: 1.4rem; }
+}
